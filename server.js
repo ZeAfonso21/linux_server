@@ -1,13 +1,15 @@
+const path = require('path');
 const https = require('https');
 const fs = require('fs');
 const express = require('express');
-import path from 'path';
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'frontend')));
+
 app.get('/', (req, res) => {
  // res.send('Secure Express server with Cloudflare Origin Cert');
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+ res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 const server = https.createServer({
