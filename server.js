@@ -5,11 +5,11 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'frontend')));
+app.use(express.static(path.join(__dirname, 'frontend/my-react-app/dist')));
 
 app.get('/', (req, res) => {
  // res.send('Secure Express server with Cloudflare Origin Cert');
- res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+ res.sendFile(path.join(__dirname, 'frontend/my-react-app/dist', 'index.html'));
 });
 
 const server = https.createServer({
@@ -18,5 +18,5 @@ const server = https.createServer({
 }, app);
 
 server.listen(8001, () => {
-  console.log('HTTPS server running on https://localhost:8001');
+  console.log('HTTPS server running on https://localhost:8001 using Cloudflare reverse proxy (tunneling)');
 });
